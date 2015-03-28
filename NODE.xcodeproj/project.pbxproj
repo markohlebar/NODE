@@ -10,6 +10,8 @@
 		960621DB1AC68E6A00783E97 /* NODE.h in Headers */ = {isa = PBXBuildFile; fileRef = 960621DA1AC68E6A00783E97 /* NODE.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		960621E11AC68E6A00783E97 /* NODE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 960621D51AC68E6A00783E97 /* NODE.framework */; };
 		960621E81AC68E6A00783E97 /* NODETests.m in Sources */ = {isa = PBXBuildFile; fileRef = 960621E71AC68E6A00783E97 /* NODETests.m */; };
+		960621F71AC68F2800783E97 /* NSObject+NODE.h in Headers */ = {isa = PBXBuildFile; fileRef = 960621F51AC68F2800783E97 /* NSObject+NODE.h */; };
+		960621F81AC68F2800783E97 /* NSObject+NODE.m in Sources */ = {isa = PBXBuildFile; fileRef = 960621F61AC68F2800783E97 /* NSObject+NODE.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,8 @@
 		960621E01AC68E6A00783E97 /* NODETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NODETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		960621E61AC68E6A00783E97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		960621E71AC68E6A00783E97 /* NODETests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NODETests.m; sourceTree = "<group>"; };
+		960621F51AC68F2800783E97 /* NSObject+NODE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+NODE.h"; path = "Categories/NSObject+NODE.h"; sourceTree = "<group>"; };
+		960621F61AC68F2800783E97 /* NSObject+NODE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+NODE.m"; path = "Categories/NSObject+NODE.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,7 @@
 		960621D71AC68E6A00783E97 /* NODE */ = {
 			isa = PBXGroup;
 			children = (
+				960621F41AC68F0300783E97 /* Categories */,
 				960621DA1AC68E6A00783E97 /* NODE.h */,
 				960621D81AC68E6A00783E97 /* Supporting Files */,
 			);
@@ -102,6 +107,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		960621F41AC68F0300783E97 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				960621F51AC68F2800783E97 /* NSObject+NODE.h */,
+				960621F61AC68F2800783E97 /* NSObject+NODE.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -109,6 +123,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				960621F71AC68F2800783E97 /* NSObject+NODE.h in Headers */,
 				960621DB1AC68E6A00783E97 /* NODE.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				960621F81AC68F2800783E97 /* NSObject+NODE.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
