@@ -14,21 +14,21 @@
 #pragma mark - Parent-Child operations
 
 - (void)node_addChild:(id)node {
-    if (![self.nod_mutableChildren containsObject:node]) {
-        [self.nod_mutableChildren addObject:node];
+    if (![self.node_mutableChildren containsObject:node]) {
+        [self.node_mutableChildren addObject:node];
         [node setNode_parent:self];
     }
 }
 
 - (void)node_removeChild:(id)node {
-    [self.nod_mutableChildren removeObject:node];
+    [self.node_mutableChildren removeObject:node];
     [node setNode_parent:nil];
 }
 
 - (void)node_removeAllChildren {
-    [self.nod_mutableChildren makeObjectsPerformSelector:@selector(setNode_parent:)
+    [self.node_mutableChildren makeObjectsPerformSelector:@selector(setNode_parent:)
                                               withObject:nil];
-    [self.nod_mutableChildren removeAllObjects];
+    [self.node_mutableChildren removeAllObjects];
 }
 
 - (id)node_root {
@@ -54,11 +54,13 @@
 }
 
 - (void)setNode_parent:(id)parent {
-    objc_setAssociatedObject(self, @selector(node_parent), parent, OBJC_ASSOCIATION_ASSIGN);
+    @synchronized(self) {
+        objc_setAssociatedObject(self, @selector(node_parent), parent, OBJC_ASSOCIATION_ASSIGN);
+    }
 }
 
 - (NSArray *)node_children {
-    return self.nod_mutableChildren.copy;
+    return self.node_mutableChildren.copy;
 }
 
 #pragma mark - Index Paths
@@ -73,7 +75,16 @@
 }
 
 - (id)node_nodeAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    NSUInteger indexes[indexPath.length];
+    [indexPath getIndexes:indexes];
+    
+    NSObject *node = self.node_root;
+    for (int i = 1; i < indexPath.length; i++) {
+        NSUInteger index = indexes[i];
+        node = node.node_children[index];
+    }
+    
+    return node;
 }
 
 #pragma mark - Private
@@ -93,13 +104,27 @@
     return indexes;
 }
 
-- (NSMutableArray *)nod_mutableChildren {
-    NSMutableArray *children = objc_getAssociatedObject(self, @selector(nod_mutableChildren));
-    if (!children) {
-        children = [NSMutableArray new];
-        objc_setAssociatedObject(self, @selector(nod_mutableChildren), children, OBJC_ASSOCIATION_RETAIN);
+- (NSMutableArray *)node_mutableChildren {
+    NSMutableArray *children = nil;
+    @synchronized(self) {
+        children = objc_getAssociatedObject(self, @selector(node_mutableChildren));
+        if (!children) {
+            children = [NSMutableArray new];
+            objc_setAssociatedObject(self, @selector(node_mutableChildren), children, OBJC_ASSOCIATION_RETAIN);
+        }
     }
     return children;
+}
+
+#pragma mark - Logging
+
+- (NSString *)node_debugDescription {
+    NSMutableString *mutableDescription = [NSMutableString new];
+    [mutableDescription appendFormat:@"%@\n", self.debugDescription];
+    for (NSObject *node in self.node_children) {
+        [mutableDescription appendFormat:@"%*c%@",  (int)node.node_ancestors.count * 4, ' ', node.node_debugDescription];
+    }
+    return mutableDescription.copy;
 }
 
 @end

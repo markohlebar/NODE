@@ -63,12 +63,19 @@
 - (NSIndexPath *)node_indexPath;
 
 /**
- *  Traverses the tree from root, and finds the node at wanted index path.
+ *  Traverses the tree from root, and finds the child at wanted index path.
  *
  *  @param indexPath an indexPath
  *
  *  @return a node.
  */
 - (id)node_nodeAtIndexPath:(NSIndexPath *)indexPath;
+
+/**
+ *  Outputs a debug description of the node with all it's children.
+ *
+ *  @return a description string.
+ */
+- (NSString *)node_debugDescription;
 
 @end

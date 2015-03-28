@@ -157,4 +157,55 @@
     XCTAssertTrue(indexes[0] == 0 && indexes[1] == 0 && indexes[2] == 1, @"IndexPath of grandChild2 is 0-0-1");
 }
 
+- (void)testNodeAtIndexPath0IsRoot {
+    NSObject *node = [_root node_nodeAtIndexPath:[NSIndexPath indexPathWithIndex:0]];
+    XCTAssertEqual(node, _root, @"Node at index path 0 is root");
+}
+
+- (void)testNodeAtIndexPath0_0IsChild {
+    NSObject *child = [NSObject new];
+    [_root node_addChild:child];
+    NSIndexPath *indexPath = [child node_indexPath];
+    NSObject *node = [_root node_nodeAtIndexPath:indexPath];
+    XCTAssertEqual(node, child, @"Node at index path 0-0 is child");
+}
+
+- (void)testNodeAtIndexPathForSecondChildIs0_1 {
+    NSObject *child = [NSObject new];
+    [_root node_addChild:child];
+    
+    NSObject *child2 = [NSObject new];
+    [_root node_addChild:child2];
+    
+    NSIndexPath *indexPath = [child2 node_indexPath];
+    NSObject *node = [_root node_nodeAtIndexPath:indexPath];
+
+    XCTAssertEqual(node, child2, @"Node at index path 0-1 is child2");
+}
+
+- (void)testDebugDescription {
+    NSObject *child = [NSObject new];
+    [_root node_addChild:child];
+    
+    NSObject *child2 = [NSObject new];
+    [_root node_addChild:child2];
+    
+    NSObject *grandChild = [NSObject new];
+    [child node_addChild:grandChild];
+    
+    NSObject *grandChild2 = [NSObject new];
+    [child node_addChild:grandChild2];
+    
+    NSLog(@"\n%@", [_root node_debugDescription]);
+}
+
+- (void)testPerformance {
+    NSObject *child = [NSObject new];
+
+    [self measureBlock:^{
+        [_root node_addChild:child];
+        [_root node_removeChild:child];
+    }];
+}
+
 @end
