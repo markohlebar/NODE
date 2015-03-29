@@ -75,6 +75,10 @@ as dangerous as it gets, but if you use it properly you should be fine. A prefix
 was added so that name collision risk with other libraries would be minimized, but you still
 need to keep an eye on that. 
 
+### Installation 
+
+pod 'NODE_'
+
 ### Contributing
 Pull requests, issues and comments are very welcome. 
 
