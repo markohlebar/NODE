@@ -20,6 +20,12 @@
     }
 }
 
+- (void)node_addChildren:(NSArray *)nodes {
+    [nodes enumerateObjectsUsingBlock:^(id node, NSUInteger idx, BOOL *stop) {
+        [self node_addChild:node];
+    }];
+}
+
 - (void)node_removeChild:(id)node {
     [self.node_mutableChildren removeObject:node];
     [node setNode_parent:nil];
@@ -60,7 +66,10 @@
 }
 
 - (NSArray *)node_children {
-    return self.node_mutableChildren.copy;
+    /**
+     *  For performance reasons, node_children is simply returning the mutable children instead of a copy.
+     */
+    return self.node_mutableChildren;
 }
 
 #pragma mark - Index Paths

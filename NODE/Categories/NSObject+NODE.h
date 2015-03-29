@@ -28,6 +28,13 @@
 - (void)node_addChild:(id)node;
 
 /**
+ *  Adds an array of child node.
+ *
+ *  @param node a node.
+ */
+- (void)node_addChildren:(NSArray *)nodes;
+
+/**
  *  Removes a child node.
  *
  *  @param node a node.

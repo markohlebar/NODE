@@ -50,6 +50,16 @@
     XCTAssertTrue(_root.node_children.count == 1, @"Should not add the same object to the array twice");
 }
 
+- (void)testAddingMultipleChildren {
+    NSObject *child = [NSObject new];
+    NSObject *child2 = [NSObject new];
+
+    NSArray *children = @[child, child2];
+    [_root node_addChildren:children];
+    
+    XCTAssertEqualObjects(_root.node_children, children, @"Children should match the passed children array");
+}
+
 - (void)testRemovingAChild {
     NSObject *child = [NSObject new];
     [_root node_addChild:child];
