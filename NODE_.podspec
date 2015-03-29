@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 
-  s.name         = "NODE"
+  s.name         = "NODE_"
   s.version      = "0.1.0"
   s.summary      = "Create a tree from any objects."
 
