@@ -77,7 +77,7 @@ need to keep an eye on that.
 
 ### Installation 
 
-pod 'NODE_'
+`pod 'NODE_'`
 
 ### Contributing
 Pull requests, issues and comments are very welcome. 
