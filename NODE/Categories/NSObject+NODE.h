@@ -18,7 +18,7 @@
 /**
  *  An array of node's children.
  */
-@property (nonatomic, strong, readonly) NSArray *node_children;
+@property (strong, readonly) NSArray *node_children;
 
 /**
  *  Adds a child node.

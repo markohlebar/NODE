@@ -77,13 +77,13 @@
 - (id)node_nodeAtIndexPath:(NSIndexPath *)indexPath {
     NSUInteger indexes[indexPath.length];
     [indexPath getIndexes:indexes];
-    
+
     NSObject *node = self.node_root;
     for (int i = 1; i < indexPath.length; i++) {
         NSUInteger index = indexes[i];
         node = node.node_children[index];
     }
-    
+
     return node;
 }
 
@@ -92,7 +92,7 @@
 - (NSUInteger *)node_createIndexes {
     NSUInteger depth = self.node_ancestors.count + 1;
     NSUInteger *indexes = calloc(depth, sizeof(NSUInteger));
-    
+
     __block NSObject *child = self;
     NSArray *ancestors = self.node_ancestors;
     [ancestors enumerateObjectsUsingBlock:^(NSObject *object, NSUInteger index, BOOL *stop) {
@@ -100,7 +100,7 @@
         child = object;
         indexes[ancestors.count - index] = childIndex;
     }];
-    
+
     return indexes;
 }
 
