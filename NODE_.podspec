@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "NODE_"
-  s.version      = "0.1.0"
+  s.version      = "0.1.1"
   s.summary      = "Create a tree from any objects."
 
   s.description  = <<-DESC
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.author             = { "Marko Hlebar" => "marko.hlebar@gmail.com" }
   s.social_media_url   = "https://twitter.com/markohlebar"
 
-  s.source       = { :git => "https://github.com/markohlebar/NODE.git", :tag => "0.1.0" }
+  s.source       = { :git => "https://github.com/markohlebar/NODE.git", :tag => "0.1.1" }
   s.source_files  = "NODE", "NODE/**/*.{h,m}"
   
   # s.public_header_files = "Classes/**/*.h"

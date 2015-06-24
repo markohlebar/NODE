@@ -34,6 +34,8 @@
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+    
+    _root = nil;
 }
 
 - (void)testAddingAChild {
@@ -83,6 +85,13 @@
     
     XCTAssertTrue(_root.node_children.count == 0, @"Should not contain children");
     XCTAssertNil(child2.node_parent, @"Should not have a reference to it's parent after being removed");
+}
+
+- (void)testSettingMutableChildrenUsesTheMutableArrayThatIsSet {
+    NSMutableArray *children = @[[NSObject new], [NSObject new]].mutableCopy;
+    [_root node_setMutableChildren:children];
+    
+    XCTAssertEqualObjects(_root.node_children, children, @"The mutable children that are set should be used");
 }
 
 - (void)testRootOfRootIsRootItself {
